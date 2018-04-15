@@ -122,9 +122,135 @@ HEAD~100 退100个版本
 
 git reset --hard commit_number版本穿梭
 
+##工作区和暂存区
+
 ---
 
-##
+## 工作区
+
+创建 放置文件的目录
+
+## 版本库 （repository）
+
+隐藏目录 .git 
+
+版本库里有  stage master HEAD
+
+## stage (暂存区)
+
+git add 将工作区的文件提交到暂存区
+
+暂存区 可以放置多个文件
+
+多个文件（同一批次 一次任务）可以使用 git commit -m 命令 一次提交到 master 		
+
+## 管理修改
+
+git diff HEAD --readme.md
+
+可以查看工作区和版本库修改的区别
+
+第一次 修改 
+
+git add
+
+第二次修改
+
+git commit
+
+提交无效
+
+git add
+
+git commit
+
+才有效
+
+---
+
+##撤销修改
+
+git checkout -- 文件名
+
+ a. 没有git add 在工作区修改 后 想撤销
+
+ b. git add 后  在工作区  又修改  撤销后 成 git add 内容
+
+git reset HEAD file
+
+将 stage 中的 文件退回 工作区 然后用  git checkout -- 文件名 撤销修改
+
+
+
+## 删除文件
+
+rm test.txt
+
+test.txt 是已提交到 repository 中 的文件
+
+则 可以
+
+git rm 文件名  删除改文件
+
+git commit -m"删除信息"
+
+或者
+
+git checkout -- 文件名 恢复文件  只能恢复到删除前状态
+
+---
+
+## 远程仓库（第一个特性）
+
+---
+
+​	
+
+github 与git  之间是  SSH 加密的
+
+用户主目录  .ssh  id_rsa id_rsa.pub(后缀可能被系统隐藏  publisher  xx 文件)
+
+在git bash  创建 SSH
+
+ssh-keygen -t rsa -C "youremail@example.com"
+
+一路回车
+
+在git hub 中 找到 SSH key  添加  id_rsa.pub （公钥）
+
+---
+
+## 添加远程库
+
+---
+
+关联远程库
+
+git remote add origin git@github.com:yourname(path)/learngit(repo-name).git
+
+第一次推送git push -u origin master
+
+以后：git push origin master
+
+---
+
+##从远程库克隆
+
+---
+
+git clone git@github.com:richardlmy\gitskills.git
+
+---
+
+
+
+
+
+
+
+​	
+
+
 
 
 
