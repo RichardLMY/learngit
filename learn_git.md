@@ -242,6 +242,38 @@ git clone git@github.com:richardlmy\gitskills.git
 
 ---
 
+## 分支管理
+
+---
+
+#### 创建和合并分支
+
+---
+
+git branch 查看分支
+
+git branch <branch name> 创建分支
+
+git checkout  <branch name>切换分支
+
+git checkout -b <branch name> 创建并切换分支
+
+·git merge <branch name > 将某分支合并到当前分支
+
+git branch -d <branch name> 删除分支
+
+---
+
+### 冲突处理
+
+---
+
+合并分支时当两个分支内容有冲突  合并时会报冲突错误  此时需要修改 冲突内容
+
+
+
+ 
+
 
 
 
