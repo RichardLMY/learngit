@@ -270,9 +270,124 @@ git branch -d <branch name> 删除分支
 
 合并分支时当两个分支内容有冲突  合并时会报冲突错误  此时需要修改 冲突内容
 
+---
+
+### 分支管理策略
+
+---
+
+git merge --no--ff -m"说明“ branch name
+
+可以保留分支的信息
+
+用 git log --graph --pretty=oneline
+
+实际管理，master 应该是主线内容  dev 应该是我们干活的那一部分
+
+---
+
+### BUG分支
+
+---
+
+BUG 分支 讲的是 当前正在工作  突然发现其他部分有BUG 
+
+此时用 git stash (将手上工作保存)
+
+再去其他分支 去 新建一个分支 处理BUG
+
+处理后 删除 分支 git branch -d  branch name
+
+回到 原分支  git checkout 分支
+
+git stash pop 回到现场 删除 stash
+
+git stash list 可以查看stash
+
+---
+
+### Feature 分支  管理
+
+---
+
+用于新特性的开发
+
+需要新开发一个新功能  则 再开一个新分支处理  git checkout -b feature-test
+
+git add test1 
+
+git commit -m"test1"
+
+开发好了后 准备提交
+
+此时需要舍弃新功能
+
+git branch -D feature-test  删除分支
+
+---
+
+### 多人协作
+
+---
+
+ git remote 用来查看远程库的信息
+
+git remote -v  显示更详细的信息
+
+ git push origin master 将master 分支推送到远程库对应的 master分支上
+
+mater分支 是主分支必须时刻同步
+
+dev分支 是工作分支 也需要时刻同步
+
+feature分支 取决于是否合作开发
+
+bug分支 一般不推送除非BOSS要看你修复的BUG
+
+因此，多人协作的工作模式通常是这样：
+
+1. 首先，可以试图用`git push origin branch-name`推送自己的修改；
+2. 如果推送失败，则因为远程分支比你的本地更新，需要先用`git pull`试图合并；
+3. 如果合并有冲突，则解决冲突，并在本地提交；
+4. 没有冲突或者解决掉冲突后，再用`git push origin branch-name`推送就能成功！
+
+如果`git pull`提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建，用命令`git branch --set-upstream branch-name origin/branch-name`。
+
+这就是多人协作的工作模式，一旦熟悉了，就非常简单。
+
+### 标签
+
+git tag <tagname>  给当前HEAD指向的操作打标签
+
+git tag 可以查看所有的标签
+
+git show <tagname> 可以查看tag 标签信息
+
+git tag -a <tagname> -m"说明信息"  commit id
+
+git tag -s<tagname> -m"说明信息"  commit id  PGP签名的标签
+
+#### 操作标签
+
+删除：git tag -d tagname
+
+推送到远程库：git push origin <tagname>
+
+git push origin --tags所有标签
+
+删除远程标签
+
+1. 先删除本地 git tag -d name
+
+2. ```
+   git push origin :refs/tags/v0.9
+   ```
 
 
- 
+
+配置别名
+
+git config --global alias.st status
 
 
 
